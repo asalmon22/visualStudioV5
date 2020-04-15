@@ -63,13 +63,10 @@ namespace smartFridge_v02
 
         private void buttonAskForItem_Click(object sender, EventArgs e)
         {
-            
-            
-            
-            //serialPort1.Write("R");
-            //serialPort1.Write(tbAskForItem.Text);
+            serialPort1.Write("R");
+            serialPort1.Write(tbAskForItem.Text);
             tbAskForItem.Clear();
-            //serialPort1.Write("@");
+            serialPort1.Write("@");
         }
 
         private void buttonPutIn_Click(object sender, EventArgs e)
@@ -96,14 +93,19 @@ namespace smartFridge_v02
                 databaseCounter = counter.ToString();
                 writeToExcel(databaseCounter, 1, 6, 1); //cell 1,6 is where the counter is stored
 
+                //place food item in fridge
+                PlaceFood(tbPutIn.Text);
             }
+
+
+
             //serialPort1.Write("E");
             //serialPort1.Write(tbPutIn.Text);
-            tbPutIn.Clear();
+            //tbPutIn.Clear();
             //serialPort1.Write("@");
         }
 
-        //checkDatabase searches the excel sheet containing the food database for a match. It returns
+        //checkDirectory searches the excel sheet containing the food database for a match. It returns
         //a "1" if there is a match, otherwise a zero.
         private int checkDatabase(string findThis)
         {
@@ -114,32 +116,53 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
 
-            //Get the database counter from excel
-            string databaseCounter;
-            databaseCounter = readFromExcel(1, 6, 1);
-            int counter = int.Parse(databaseCounter);
-
             //Search the "A" column for the given food, and set the flag
-            for (int i=1; i<=counter; i++)
+            string checkFood = excelSheet.get_Range("A1", "A1").Value2.ToString(); //THIS PART NEEDS WORK
+            if (checkFood == findThis)
             {
-                string checkFood = excelSheet.Cells[i, 1].Value.ToString();
-                if (checkFood == findThis)
-                {
-                    foundFood = 1;
-                }
-                else
-                {
-                    //leave flag at zero
-                }
+                foundFood = 1;
             }
-
+            else
+            {
+                //leave flag at zero
+            }
             excelBook.Close(true);
             excelApp.Quit();
 
             return foundFood;
+        }
+
+        private void PlaceFood(string foodItem)
+        {
+            //open excel sheet
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook excelBook;
+            Worksheet excelSheet;
+            string curDir = Directory.GetCurrentDirectory().ToString();
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
+            excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
+
+            //check for lowest open space
+            bool openSpace = false;
+            string food;
+            int pos = 0;
+            while(openSpace == false)
+            {
+                pos++;
+                food = excelSheet.Cells[pos, 1].Value.ToString();
+                if(food == "")
+                {
+                    openSpace = true;
+                }
+            }
+            //write food item to open space
+            excelSheet.Cells[pos, 1] = foodItem;
+
+            excelBook.Close(true);
+            excelApp.Quit();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -189,7 +212,7 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet, excelSheet2;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
             excelSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
 
@@ -215,7 +238,7 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(sheetNum);
 
             //Write to the appropriate cell
@@ -233,7 +256,7 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(sheetNum);
 
             //Read from appropriate cell
@@ -244,6 +267,11 @@ namespace smartFridge_v02
             excelApp.Quit();
 
             return readText;
+        }
+
+        private void tbAskForItem_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
