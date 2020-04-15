@@ -63,10 +63,13 @@ namespace smartFridge_v02
 
         private void buttonAskForItem_Click(object sender, EventArgs e)
         {
-            serialPort1.Write("R");
-            serialPort1.Write(tbAskForItem.Text);
+            
+            
+            
+            //serialPort1.Write("R");
+            //serialPort1.Write(tbAskForItem.Text);
             tbAskForItem.Clear();
-            serialPort1.Write("@");
+            //serialPort1.Write("@");
         }
 
         private void buttonPutIn_Click(object sender, EventArgs e)
@@ -94,11 +97,9 @@ namespace smartFridge_v02
                 writeToExcel(databaseCounter, 1, 6, 1); //cell 1,6 is where the counter is stored
 
             }
-
-
             //serialPort1.Write("E");
             //serialPort1.Write(tbPutIn.Text);
-            //tbPutIn.Clear();
+            tbPutIn.Clear();
             //serialPort1.Write("@");
         }
 
@@ -243,11 +244,6 @@ namespace smartFridge_v02
             excelApp.Quit();
 
             return readText;
-        }
-
-        private void tbAskForItem_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

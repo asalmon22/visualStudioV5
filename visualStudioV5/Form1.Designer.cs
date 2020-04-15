@@ -70,7 +70,6 @@
             this.tbAskForItem.Name = "tbAskForItem";
             this.tbAskForItem.Size = new System.Drawing.Size(461, 136);
             this.tbAskForItem.TabIndex = 2;
-            this.tbAskForItem.TextChanged += new System.EventHandler(this.tbAskForItem_TextChanged);
             // 
             // tbPutIn
             // 
