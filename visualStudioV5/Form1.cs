@@ -82,7 +82,7 @@ namespace smartFridge_v02
             {
                 //Get current number of filled rows in database
                 string databaseCounter;
-                databaseCounter = readFromExcel("F1", 1);
+                databaseCounter = readFromExcel(1, 6, 1);
                 int counter = int.Parse(databaseCounter);
 
                 //Write to the next empty row
@@ -216,7 +216,7 @@ namespace smartFridge_v02
         }
 
         // This function opens the excel sheet, and reads from the given cell
-        private string readFromExcel(string cellName, int sheetNum)
+        private string readFromExcel(int rowNum, int columnNum, int sheetNum)
         {
             //Open excel workbook and sheets
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
@@ -228,7 +228,7 @@ namespace smartFridge_v02
 
             //Read from appropriate cell
             string readText;
-            readText = excelSheet.get_Range(cellName, cellName).Value2.ToString();
+            readText = excelSheet.Cells[rowNum, columnNum].Value.ToString();
 
             excelBook.Close(true);
             excelApp.Quit();
