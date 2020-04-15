@@ -102,7 +102,7 @@ namespace smartFridge_v02
             //serialPort1.Write("@");
         }
 
-        //checkDirectory searches the excel sheet containing the food database for a match. It returns
+        //checkDatabase searches the excel sheet containing the food database for a match. It returns
         //a "1" if there is a match, otherwise a zero.
         private int checkDatabase(string findThis)
         {
@@ -116,16 +116,25 @@ namespace smartFridge_v02
             excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
 
+            //Get the database counter from excel
+            string databaseCounter;
+            databaseCounter = readFromExcel(1, 6, 1);
+            int counter = int.Parse(databaseCounter);
+
             //Search the "A" column for the given food, and set the flag
-            string checkFood = excelSheet.get_Range("A1", "A1").Value2.ToString(); //THIS PART NEEDS WORK
-            if (checkFood == findThis)
+            for (int i=1; i<=counter; i++)
             {
-                foundFood = 1;
+                string checkFood = excelSheet.Cells[i, 1].Value.ToString();
+                if (checkFood == findThis)
+                {
+                    foundFood = 1;
+                }
+                else
+                {
+                    //leave flag at zero
+                }
             }
-            else
-            {
-                //leave flag at zero
-            }
+
             excelBook.Close(true);
             excelApp.Quit();
 
