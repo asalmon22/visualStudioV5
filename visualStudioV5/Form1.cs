@@ -113,7 +113,7 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet3.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
 
             //Search the "A" column for the given food, and set the flag
@@ -179,15 +179,17 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet, excelSheet2;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet3.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
             excelSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
 
-            writeText(excelSheet.get_Range("A2", "A2").Value2.ToString());
+            //writeText(excelSheet.get_Range("A2", "A2").Value2.ToString());
 
             string entry = "testing testing";
             excelSheet.Cells[Globals.rowNumber, Globals.columnNumber] = entry;
             excelSheet2.Cells[Globals.rowNumber, Globals.columnNumber] = entry;
+            string read = excelSheet.Cells[1, 1].Value.ToString();
+            writeText(read);
             //tbMessages.Clear();
             //tbMessages.AppendText(excelSheet.get_Range("A2", "A2").Value2.ToString());
 
@@ -203,7 +205,7 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet3.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(sheetNum);
 
             //Write to the appropriate cell
@@ -221,7 +223,7 @@ namespace smartFridge_v02
             Workbook excelBook;
             Worksheet excelSheet;
             string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet3.xlsx");
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet4.xlsx");
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(sheetNum);
 
             //Read from appropriate cell
