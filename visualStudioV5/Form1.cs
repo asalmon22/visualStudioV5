@@ -63,10 +63,11 @@ namespace smartFridge_v02
 
         private void buttonAskForItem_Click(object sender, EventArgs e)
         {
-            serialPort1.Write("R");
-            serialPort1.Write(tbAskForItem.Text);
+
+            //serialPort1.Write("R");
+            //serialPort1.Write(tbAskForItem.Text);
             tbAskForItem.Clear();
-            serialPort1.Write("@");
+            //serialPort1.Write("@");
         }
 
         private void buttonPutIn_Click(object sender, EventArgs e)
@@ -120,14 +121,24 @@ namespace smartFridge_v02
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
 
             //Search the "A" column for the given food, and set the flag
-            string checkFood = excelSheet.get_Range("A1", "A1").Value2.ToString(); //THIS PART NEEDS WORK
-            if (checkFood == findThis)
+            //Get the database counter from excel
+            string databaseCounter;
+            databaseCounter = readFromExcel(1, 6, 1);
+            int counter = int.Parse(databaseCounter);
+
+            //Search the "A" column for the given food, and set the flag
+            string checkFood;
+            for (int i = 1; i <= counter; i++)
             {
-                foundFood = 1;
-            }
-            else
-            {
-                //leave flag at zero
+                checkFood = excelSheet.Cells[i, 1].Value.ToString();
+                if (checkFood == findThis)
+                {
+                    foundFood = 1;
+                }
+                else
+                {
+                    //leave flag at zero
+                }
             }
             excelBook.Close(true);
             excelApp.Quit();
@@ -267,11 +278,6 @@ namespace smartFridge_v02
             excelApp.Quit();
 
             return readText;
-        }
-
-        private void tbAskForItem_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
