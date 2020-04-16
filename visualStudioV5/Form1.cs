@@ -68,11 +68,13 @@ namespace smartFridge_v02
             //serialPort1.Write(tbAskForItem.Text);
             tbAskForItem.Clear();
             //serialPort1.Write("@");
+
+
         }
 
         private void buttonPutIn_Click(object sender, EventArgs e)
         {
-            int foodExists = 0;
+            int foodExists;
             foodExists = checkDatabase(tbPutIn.Text); //returns a "1" if food is in database. Else, zero.
 
             if (foodExists == 1)
@@ -102,7 +104,7 @@ namespace smartFridge_v02
 
             //serialPort1.Write("E");
             //serialPort1.Write(tbPutIn.Text);
-            //tbPutIn.Clear();
+            tbPutIn.Clear();
             //serialPort1.Write("@");
         }
 
@@ -159,21 +161,59 @@ namespace smartFridge_v02
             //check for lowest open space
             bool openSpace = false;
             string food;
-            int pos = 0;
-            while(openSpace == false)
+            int pos = 2;
+            while(openSpace == false && pos < 11)
             {
-                pos++;
                 food = excelSheet.Cells[pos, 1].Value.ToString();
-                if(food == "")
+                if(food == "0")
                 {
                     openSpace = true;
+                    //write food item to open space
+                    excelSheet.Cells[pos, 1] = foodItem;
                 }
+                pos++;
             }
-            //write food item to open space
-            excelSheet.Cells[pos, 1] = foodItem;
-
             excelBook.Close(true);
             excelApp.Quit();
+        }
+
+        private void GrabFood(string foodItem)
+        {
+            //open excel sheet
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook excelBook;
+            Worksheet excelSheet;
+            string curDir = Directory.GetCurrentDirectory().ToString();
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
+            excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
+
+            //check fridge for desired food
+            int pos = 2;
+            string x, y, z;
+            string food;
+            bool foodFound = false;
+            while(foodFound == false && pos<11)
+            {
+                food = excelSheet.Cells[pos, 1].Value.ToString();
+                if(food == foodItem)
+                {
+                    foodFound = true;
+                    excelSheet.Cells[pos, 1] = "0";
+                    x = excelSheet.Cells[pos, 4].Value.ToString();
+                    y = excelSheet.Cells[pos, 5].Value.ToString();
+                    z = excelSheet.Cells[pos, 6].Value.ToString();
+                }
+                pos++;
+            }
+            serialPort1.Write("P");
+            serialPort1.Write("X");
+            serialPort1.Write(x);
+            serialPort1.Write("Y");
+            serialPort1.Write(y);
+            serialPort1.Write("Z");
+            serialPort1.Write(z);
+
+
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
