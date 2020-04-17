@@ -192,10 +192,8 @@ namespace smartFridge_v02
             while(foundFood == false && pos<11)
             {
                 food = excelSheet.Cells[pos, 1].Value.ToString();
-                tbMessages.AppendText(food);
                 if (food == foodItem)
                 {
-                    tbMessages.AppendText("here");
                     foundFood = true;
                     excelSheet.Cells[pos, 1] = "0";
                     x = excelSheet.Cells[pos, 4].Value.ToString();
@@ -232,7 +230,6 @@ namespace smartFridge_v02
                         movePos = i;
                     }
                 }
-                tbMessages.AppendText(count.ToString());
                 //serialPort1.Write("C");
                 //serialPort1.Write(count.ToString());
                 //serialPort1.Write("@");
