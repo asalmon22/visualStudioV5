@@ -73,6 +73,11 @@ namespace smartFridge_v02
 
         private void buttonPutIn_Click(object sender, EventArgs e)
         {
+            //Prompt the user to input an expiration date
+            string dateEntered;
+            dateEntered = showCal();
+            tbMessages.AppendText(dateEntered);
+
             int foodExists;
             foodExists = checkDatabase(tbPutIn.Text); //returns a "1" if food is in database. Else, zero.
 
@@ -299,6 +304,29 @@ namespace smartFridge_v02
                                                                                 // serialPort1.Write(mCal.SelectionStart.ToString("yyyyMMdd"));
             calForm.Close();
 
+        }
+
+        private string showCal()
+        {
+            //Open up a new form containing a calendar
+            Form calForm = new Form();
+            MonthCalendar mCal = new MonthCalendar();
+            System.Windows.Forms.TextBox box = new System.Windows.Forms.TextBox();
+            box.AppendText("Choose an expiration date");
+
+            calForm.Controls.Add(mCal);
+            calForm.Controls.Add(box);
+            box.Location = new System.Drawing.Point(0, 175);
+            box.Size = new System.Drawing.Size(200, 100);
+            calForm.ShowDialog();
+
+            //Store the selected value
+            string dateChosen;
+            dateChosen = mCal.SelectionStart.ToString("yyyyMMdd");
+
+            //calForm.Hide();
+            calForm.Close();
+            return dateChosen;
         }
 
         // This function opens the excel sheet, and writes to the given cell
