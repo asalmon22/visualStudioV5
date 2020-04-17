@@ -102,7 +102,7 @@ namespace smartFridge_v02
             }
 
             //place food item in fridge
-            PlaceFood(tbPutIn.Text);
+            PlaceFood(tbPutIn.Text, dateEntered);
 
 
             //serialPort1.Write("E");
@@ -150,7 +150,7 @@ namespace smartFridge_v02
             return foundFood;
         }
 
-        private void PlaceFood(string foodItem)
+        private void PlaceFood(string foodItem, string date)
         {
             //open excel sheet
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
@@ -172,6 +172,7 @@ namespace smartFridge_v02
                     openSpace = true;
                     //write food item to open space
                     excelSheet.Cells[pos, 1] = foodItem;
+                    excelSheet.Cells[pos, 2] = date;
                 }
                 pos++;
             }
@@ -204,13 +205,7 @@ namespace smartFridge_v02
                     x = excelSheet.Cells[pos, 4].Value.ToString();
                     y = excelSheet.Cells[pos, 5].Value.ToString();
                     z = excelSheet.Cells[pos, 6].Value.ToString();
-                    //serialPort1.Write("P");
-                    //serialPort1.Write("X");
-                    //serialPort1.Write(x);
-                    //serialPort1.Write("Y");
-                    //serialPort1.Write(y);
-                    //serialPort1.Write("Z");
-                    //serialPort1.Write(z);
+                    //serialPort1.Write("P"+x+y+z+"@");
                 }
                 pos++;
             }
@@ -363,6 +358,12 @@ namespace smartFridge_v02
             excelApp.Quit();
 
             return readText;
+        }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            tbMessages.Clear();
+            //serialPort1.Write("C@");
         }
     }
 }
