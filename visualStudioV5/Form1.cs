@@ -127,7 +127,7 @@ namespace smartFridge_v02
 
             //Search the "A" column for the given food, and set the flag
             string checkFood;
-            for (int i = 1; i <= counter; i++)
+            for (int i = 2; i <= counter; i++)
             {
                 checkFood = excelSheet.Cells[i, 1].Value.ToString();
                 if (checkFood == findThis)
