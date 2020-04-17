@@ -62,14 +62,13 @@ namespace smartFridge_v02
         }
 
         private void buttonAskForItem_Click(object sender, EventArgs e)
-        {
-
+        { 
             //serialPort1.Write("R");
             //serialPort1.Write(tbAskForItem.Text);
-            tbAskForItem.Clear();
             //serialPort1.Write("@");
 
-
+            GrabFood(tbAskForItem.Text);
+            tbAskForItem.Clear();
         }
 
         private void buttonPutIn_Click(object sender, EventArgs e)
@@ -95,11 +94,10 @@ namespace smartFridge_v02
                 counter += 1;
                 databaseCounter = counter.ToString();
                 writeToExcel(databaseCounter, 1, 6, 1); //cell 1,6 is where the counter is stored
-
-                //place food item in fridge
-                PlaceFood(tbPutIn.Text);
             }
 
+            //place food item in fridge
+            PlaceFood(tbPutIn.Text);
 
 
             //serialPort1.Write("E");
@@ -191,29 +189,60 @@ namespace smartFridge_v02
             int pos = 2;
             string x, y, z;
             string food;
-            bool foodFound = false;
-            while(foodFound == false && pos<11)
+            bool foundFood = false;
+            while(foundFood == false && pos<11)
             {
                 food = excelSheet.Cells[pos, 1].Value.ToString();
-                if(food == foodItem)
+                tbMessages.AppendText(food);
+                if (food == foodItem)
                 {
-                    foodFound = true;
+                    tbMessages.AppendText("here");
+                    foundFood = true;
                     excelSheet.Cells[pos, 1] = "0";
                     x = excelSheet.Cells[pos, 4].Value.ToString();
                     y = excelSheet.Cells[pos, 5].Value.ToString();
                     z = excelSheet.Cells[pos, 6].Value.ToString();
+                    //serialPort1.Write("P");
+                    //serialPort1.Write("X");
+                    //serialPort1.Write(x);
+                    //serialPort1.Write("Y");
+                    //serialPort1.Write(y);
+                    //serialPort1.Write("Z");
+                    //serialPort1.Write(z);
                 }
                 pos++;
             }
-            serialPort1.Write("P");
-            serialPort1.Write("X");
-            serialPort1.Write(x);
-            serialPort1.Write("Y");
-            serialPort1.Write(y);
-            serialPort1.Write("Z");
-            serialPort1.Write(z);
 
+            //check to see if there is any food above what you want
+            if (foundFood)
+            {
+                int count = 0;
+                string col1;
+                col1 = excelSheet.Cells[pos, 4].Value.ToString();
+                for (int i = pos; i < 11; i++)
+                {
+                    string foods, col2;
+                    foods = excelSheet.Cells[i, 1].Value.ToString();
+                    col2 = excelSheet.Cells[i, 4].Value.ToString();
+                    if (foods != "0" && col1 == col2)
+                    {
+                        count++;
+                    }
+                }
+                tbMessages.AppendText(count.ToString());
+                //serialPort1.Write("C");
+                //serialPort1.Write(count.ToString());
+                //serialPort1.Write("@");
 
+            //add in code to move higher foods lower
+            }
+            else
+            {
+                writeText("It aint there");
+            }
+
+        excelBook.Close(true);
+        excelApp.Quit();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

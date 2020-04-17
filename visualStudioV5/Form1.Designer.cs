@@ -47,52 +47,58 @@
             // labelAskForItem
             // 
             this.labelAskForItem.AutoSize = true;
-            this.labelAskForItem.Location = new System.Drawing.Point(65, 83);
+            this.labelAskForItem.Location = new System.Drawing.Point(42, 57);
+            this.labelAskForItem.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAskForItem.Name = "labelAskForItem";
-            this.labelAskForItem.Size = new System.Drawing.Size(387, 29);
+            this.labelAskForItem.Size = new System.Drawing.Size(262, 20);
             this.labelAskForItem.TabIndex = 0;
             this.labelAskForItem.Text = "Enter an Item to get from the fridge:";
             // 
             // labelPutIn
             // 
             this.labelPutIn.AutoSize = true;
-            this.labelPutIn.Location = new System.Drawing.Point(667, 83);
+            this.labelPutIn.Location = new System.Drawing.Point(429, 57);
+            this.labelPutIn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPutIn.Name = "labelPutIn";
-            this.labelPutIn.Size = new System.Drawing.Size(377, 29);
+            this.labelPutIn.Size = new System.Drawing.Size(256, 20);
             this.labelPutIn.TabIndex = 1;
             this.labelPutIn.Text = "Enter an Item to put into the fridge:";
             // 
             // tbAskForItem
             // 
-            this.tbAskForItem.Location = new System.Drawing.Point(62, 158);
+            this.tbAskForItem.Location = new System.Drawing.Point(40, 109);
+            this.tbAskForItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbAskForItem.MaxLength = 48;
             this.tbAskForItem.Multiline = true;
             this.tbAskForItem.Name = "tbAskForItem";
-            this.tbAskForItem.Size = new System.Drawing.Size(461, 136);
+            this.tbAskForItem.Size = new System.Drawing.Size(298, 95);
             this.tbAskForItem.TabIndex = 2;
             // 
             // tbPutIn
             // 
-            this.tbPutIn.Location = new System.Drawing.Point(670, 160);
+            this.tbPutIn.Location = new System.Drawing.Point(431, 110);
+            this.tbPutIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbPutIn.MaxLength = 48;
             this.tbPutIn.Multiline = true;
             this.tbPutIn.Name = "tbPutIn";
-            this.tbPutIn.Size = new System.Drawing.Size(461, 135);
+            this.tbPutIn.Size = new System.Drawing.Size(298, 94);
             this.tbPutIn.TabIndex = 3;
             // 
             // tbMessages
             // 
-            this.tbMessages.Location = new System.Drawing.Point(62, 471);
+            this.tbMessages.Location = new System.Drawing.Point(40, 325);
+            this.tbMessages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbMessages.Multiline = true;
             this.tbMessages.Name = "tbMessages";
-            this.tbMessages.Size = new System.Drawing.Size(589, 156);
+            this.tbMessages.Size = new System.Drawing.Size(380, 109);
             this.tbMessages.TabIndex = 4;
             // 
             // buttonAskForItem
             // 
-            this.buttonAskForItem.Location = new System.Drawing.Point(62, 323);
+            this.buttonAskForItem.Location = new System.Drawing.Point(40, 223);
+            this.buttonAskForItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAskForItem.Name = "buttonAskForItem";
-            this.buttonAskForItem.Size = new System.Drawing.Size(143, 59);
+            this.buttonAskForItem.Size = new System.Drawing.Size(92, 41);
             this.buttonAskForItem.TabIndex = 5;
             this.buttonAskForItem.Text = "Submit";
             this.buttonAskForItem.UseVisualStyleBackColor = true;
@@ -100,9 +106,10 @@
             // 
             // buttonPutIn
             // 
-            this.buttonPutIn.Location = new System.Drawing.Point(670, 323);
+            this.buttonPutIn.Location = new System.Drawing.Point(431, 223);
+            this.buttonPutIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonPutIn.Name = "buttonPutIn";
-            this.buttonPutIn.Size = new System.Drawing.Size(143, 59);
+            this.buttonPutIn.Size = new System.Drawing.Size(92, 41);
             this.buttonPutIn.TabIndex = 6;
             this.buttonPutIn.Text = "Submit";
             this.buttonPutIn.UseVisualStyleBackColor = true;
@@ -117,16 +124,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 497);
+            this.label1.Location = new System.Drawing.Point(61, 343);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 29);
+            this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 7;
             // 
             // viewContents
             // 
-            this.viewContents.Location = new System.Drawing.Point(670, 471);
+            this.viewContents.Location = new System.Drawing.Point(431, 325);
+            this.viewContents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.viewContents.Name = "viewContents";
-            this.viewContents.Size = new System.Drawing.Size(373, 67);
+            this.viewContents.Size = new System.Drawing.Size(240, 46);
             this.viewContents.TabIndex = 8;
             this.viewContents.Text = "View contents of fridge";
             this.viewContents.UseVisualStyleBackColor = true;
@@ -134,9 +143,10 @@
             // 
             // expDates
             // 
-            this.expDates.Location = new System.Drawing.Point(674, 554);
+            this.expDates.Location = new System.Drawing.Point(433, 382);
+            this.expDates.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.expDates.Name = "expDates";
-            this.expDates.Size = new System.Drawing.Size(373, 73);
+            this.expDates.Size = new System.Drawing.Size(240, 50);
             this.expDates.TabIndex = 9;
             this.expDates.Text = "View expiration dates";
             this.expDates.UseVisualStyleBackColor = true;
@@ -144,9 +154,10 @@
             // 
             // bShowCal
             // 
-            this.bShowCal.Location = new System.Drawing.Point(1125, 554);
+            this.bShowCal.Location = new System.Drawing.Point(723, 382);
+            this.bShowCal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bShowCal.Name = "bShowCal";
-            this.bShowCal.Size = new System.Drawing.Size(177, 73);
+            this.bShowCal.Size = new System.Drawing.Size(114, 50);
             this.bShowCal.TabIndex = 11;
             this.bShowCal.Text = "Show the Calendar";
             this.bShowCal.UseVisualStyleBackColor = true;
@@ -154,9 +165,10 @@
             // 
             // bOpenVB
             // 
-            this.bOpenVB.Location = new System.Drawing.Point(1125, 471);
+            this.bOpenVB.Location = new System.Drawing.Point(723, 325);
+            this.bOpenVB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bOpenVB.Name = "bOpenVB";
-            this.bOpenVB.Size = new System.Drawing.Size(177, 73);
+            this.bOpenVB.Size = new System.Drawing.Size(114, 50);
             this.bOpenVB.TabIndex = 12;
             this.bOpenVB.Text = "bOpenVB";
             this.bOpenVB.UseVisualStyleBackColor = true;
@@ -164,9 +176,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1364, 715);
+            this.ClientSize = new System.Drawing.Size(877, 493);
             this.Controls.Add(this.bOpenVB);
             this.Controls.Add(this.bShowCal);
             this.Controls.Add(this.expDates);
@@ -179,6 +191,7 @@
             this.Controls.Add(this.tbAskForItem);
             this.Controls.Add(this.labelPutIn);
             this.Controls.Add(this.labelAskForItem);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "The Smartest Fridge";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
