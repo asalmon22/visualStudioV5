@@ -39,9 +39,7 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.viewContents = new System.Windows.Forms.Button();
-            this.expDates = new System.Windows.Forms.Button();
             this.bShowCal = new System.Windows.Forms.Button();
-            this.bOpenVB = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelAskForItem
@@ -90,7 +88,8 @@
             this.tbMessages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbMessages.Multiline = true;
             this.tbMessages.Name = "tbMessages";
-            this.tbMessages.Size = new System.Drawing.Size(380, 109);
+            this.tbMessages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbMessages.Size = new System.Drawing.Size(589, 156);
             this.tbMessages.TabIndex = 4;
             // 
             // buttonAskForItem
@@ -141,47 +140,22 @@
             this.viewContents.UseVisualStyleBackColor = true;
             this.viewContents.Click += new System.EventHandler(this.viewContents_Click);
             // 
-            // expDates
-            // 
-            this.expDates.Location = new System.Drawing.Point(433, 382);
-            this.expDates.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.expDates.Name = "expDates";
-            this.expDates.Size = new System.Drawing.Size(240, 50);
-            this.expDates.TabIndex = 9;
-            this.expDates.Text = "View expiration dates";
-            this.expDates.UseVisualStyleBackColor = true;
-            this.expDates.Click += new System.EventHandler(this.expDates_Click);
-            // 
             // bShowCal
             // 
-            this.bShowCal.Location = new System.Drawing.Point(723, 382);
-            this.bShowCal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bShowCal.Location = new System.Drawing.Point(1097, 471);
             this.bShowCal.Name = "bShowCal";
-            this.bShowCal.Size = new System.Drawing.Size(114, 50);
+            this.bShowCal.Size = new System.Drawing.Size(177, 67);
             this.bShowCal.TabIndex = 11;
             this.bShowCal.Text = "Show the Calendar";
             this.bShowCal.UseVisualStyleBackColor = true;
             this.bShowCal.Click += new System.EventHandler(this.bShowCal_Click);
             // 
-            // bOpenVB
-            // 
-            this.bOpenVB.Location = new System.Drawing.Point(723, 325);
-            this.bOpenVB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.bOpenVB.Name = "bOpenVB";
-            this.bOpenVB.Size = new System.Drawing.Size(114, 50);
-            this.bOpenVB.TabIndex = 12;
-            this.bOpenVB.Text = "bOpenVB";
-            this.bOpenVB.UseVisualStyleBackColor = true;
-            this.bOpenVB.Click += new System.EventHandler(this.bOpenVB_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 493);
-            this.Controls.Add(this.bOpenVB);
+            this.ClientSize = new System.Drawing.Size(1364, 715);
             this.Controls.Add(this.bShowCal);
-            this.Controls.Add(this.expDates);
             this.Controls.Add(this.viewContents);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonPutIn);
@@ -195,7 +169,6 @@
             this.Name = "Form1";
             this.Text = "The Smartest Fridge";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,9 +186,7 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button viewContents;
-        private System.Windows.Forms.Button expDates;
         private System.Windows.Forms.Button bShowCal;
-        private System.Windows.Forms.Button bOpenVB;
     }
 }
 

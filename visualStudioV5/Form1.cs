@@ -103,10 +103,9 @@ namespace smartFridge_v02
             //serialPort1.Write("E");
             //serialPort1.Write(tbPutIn.Text);
             tbPutIn.Clear();
-            //serialPort1.Write("@");
         }
 
-        //checkDirectory searches the excel sheet containing the food database for a match. It returns
+        //checkDatabase searches the excel sheet containing the food database for a match. It returns
         //a "1" if there is a match, otherwise a zero.
         private int checkDatabase(string findThis)
         {
@@ -250,21 +249,35 @@ namespace smartFridge_v02
             serialPort1.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void viewContents_Click(object sender, EventArgs e)
         {
-            serialPort1.Write("V@");
-        }
+            //Open excel workbook and sheets
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook excelBook;
+            Worksheet excelSheet;
+            string curDir = Directory.GetCurrentDirectory().ToString();
+            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
+            excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
 
-        private void expDates_Click(object sender, EventArgs e)
-        {
-            serialPort1.Write("D@");
+            //Read from each cell and send to textbox
+            string readFood, readDate;
+            for(int i=2; i<=10; i++) //"i" should check up to max number of boxes
+            {
+                readFood = excelSheet.Cells[i, 1].Value.ToString();
+                readDate = excelSheet.Cells[i, 2].Value.ToString();
+                if (readFood == "0") //cell stores no real food
+                {
+                    //Do nothing
+                }
+                else //cell stores a real food
+                {
+                    tbMessages.AppendText(readFood + "     ");
+                    tbMessages.AppendText(readDate + "\r\n");
+                }
+            }
+            excelBook.Close(true);
+            excelApp.Quit();
         }
-
 
         private void bShowCal_Click(object sender, EventArgs e)
         {
@@ -284,30 +297,6 @@ namespace smartFridge_v02
                                                                                 // serialPort1.Write(mCal.SelectionStart.ToString("yyyyMMdd"));
             calForm.Close();
 
-        }
-
-        private void bOpenVB_Click(object sender, EventArgs e)
-        {
-            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook excelBook;
-            Worksheet excelSheet, excelSheet2;
-            string curDir = Directory.GetCurrentDirectory().ToString();
-            excelBook = excelApp.Workbooks.Open(curDir + @"\testsheet1.xlsx");
-            excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(1);
-            excelSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
-
-            //writeText(excelSheet.get_Range("A2", "A2").Value2.ToString());
-
-            string entry = "testing testing";
-            excelSheet.Cells[Globals.rowNumber, Globals.columnNumber] = entry;
-            excelSheet2.Cells[Globals.rowNumber, Globals.columnNumber] = entry;
-            string read = excelSheet.Cells[1, 1].Value.ToString();
-            writeText(read);
-            //tbMessages.Clear();
-            //tbMessages.AppendText(excelSheet.get_Range("A2", "A2").Value2.ToString());
-
-            excelBook.Close(true);
-            excelApp.Quit();
         }
 
         // This function opens the excel sheet, and writes to the given cell
