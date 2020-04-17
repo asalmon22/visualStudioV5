@@ -216,8 +216,9 @@ namespace smartFridge_v02
             if (foundFood)
             {
                 int count = 0;
+                int movePos = pos-1;
                 string col1;
-                col1 = excelSheet.Cells[pos, 4].Value.ToString();
+                col1 = excelSheet.Cells[movePos, 4].Value.ToString();
                 for (int i = pos; i < 11; i++)
                 {
                     string foods, col2;
@@ -226,14 +227,15 @@ namespace smartFridge_v02
                     if (foods != "0" && col1 == col2)
                     {
                         count++;
+                        excelSheet.Cells[movePos, 1] = foods;
+                        excelSheet.Cells[i, 1] = "0";
+                        movePos = i;
                     }
                 }
                 tbMessages.AppendText(count.ToString());
                 //serialPort1.Write("C");
                 //serialPort1.Write(count.ToString());
                 //serialPort1.Write("@");
-
-            //add in code to move higher foods lower
             }
             else
             {
