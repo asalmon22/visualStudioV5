@@ -162,7 +162,7 @@ namespace smartFridge_v02
 
             //check for lowest open space
             bool openSpace = false;
-            string food;
+            string food, x, y, z;
             int pos = 2;
             while(openSpace == false && pos < 11)
             {
@@ -173,6 +173,10 @@ namespace smartFridge_v02
                     //write food item to open space
                     excelSheet.Cells[pos, 1] = foodItem;
                     excelSheet.Cells[pos, 2] = date;
+                    x = excelSheet.Cells[pos, 4].Value.ToString();
+                    y = excelSheet.Cells[pos, 5].Value.ToString();
+                    z = excelSheet.Cells[pos, 6].Value.ToString();
+                    //serialPort1.Write("D"+x+y+z+"@");
                 }
                 pos++;
             }
