@@ -318,7 +318,7 @@ namespace smartFridge_v02
 
             //Store the selected value
             string dateChosen;
-            dateChosen = mCal.SelectionStart.ToString("yyyyMMdd");
+            dateChosen = mCal.SelectionStart.ToString("MM/dd/yyyy");
 
             //calForm.Hide();
             calForm.Close();
