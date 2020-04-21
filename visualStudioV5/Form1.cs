@@ -25,24 +25,19 @@ namespace smartFridge_v02
         public Form1()
         {
             InitializeComponent();
-            //if (!serialPort1.IsOpen)
-            //{
-            //    tbMessages.Text = "nothing located in port";
-            //    serialPort1.Open();
-            //    tbMessages.Text = "port opened";
-            //}
-            //else
-            //{
-            //    tbMessages.Text = "port is busy rn";
-            //}
-
-            // Open up an excel file next
-            Object oExcel = new Object();
-
-
+            if (!serialPort1.IsOpen)
+            {
+                tbMessages.Text = "nothing located in port";
+                serialPort1.Open();
+                tbMessages.Text = "port opened";
+            }
+            else
+            {
+                tbMessages.Text = "port is busy rn";
+            }
         }
 
-        private string rxString;
+        private string rxString; 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             rxString = serialPort1.ReadExisting();
@@ -63,10 +58,6 @@ namespace smartFridge_v02
 
         private void buttonAskForItem_Click(object sender, EventArgs e)
         { 
-            //serialPort1.Write("R");
-            //serialPort1.Write(tbAskForItem.Text);
-            //serialPort1.Write("@");
-
             GrabFood(tbAskForItem.Text);
             tbAskForItem.Clear();
         }
@@ -209,7 +200,8 @@ namespace smartFridge_v02
                     x = excelSheet.Cells[pos, 4].Value.ToString();
                     y = excelSheet.Cells[pos, 5].Value.ToString();
                     z = excelSheet.Cells[pos, 6].Value.ToString();
-                    //serialPort1.Write("P"+x+y+z+"@");
+                    
+                    serialPort1.Write("P"+x+y+z+"@");
                 }
                 pos++;
             }
@@ -367,7 +359,7 @@ namespace smartFridge_v02
         private void continueButton_Click(object sender, EventArgs e)
         {
             tbMessages.Clear();
-            //serialPort1.Write("C@");
+            serialPort1.Write("C@");
         }
     }
 }
