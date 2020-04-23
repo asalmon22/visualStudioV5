@@ -16,7 +16,7 @@ namespace smartFridge_v02
     public partial class Form1 : Form
     {
 
-        public static class Globals
+        public static class Globals // do we need these?
         {
             public static int rowNumber = 8;
             public static int columnNumber = 1;
@@ -69,6 +69,7 @@ namespace smartFridge_v02
             dateEntered = showCal();
             tbMessages.AppendText(dateEntered);
 
+            //Enter food in database if not there
             int foodExists;
             foodExists = checkDatabase(tbPutIn.Text); //returns a "1" if food is in database. Else, zero.
 
@@ -200,7 +201,7 @@ namespace smartFridge_v02
                     x = excelSheet.Cells[pos, 4].Value.ToString();
                     y = excelSheet.Cells[pos, 5].Value.ToString();
                     z = excelSheet.Cells[pos, 6].Value.ToString();
-                    
+
                     serialPort1.Write("P"+x+y+z+"@");
                 }
                 pos++;
@@ -255,6 +256,7 @@ namespace smartFridge_v02
             excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.get_Item(2);
 
             //Read from each cell and send to textbox
+            tbMessages.Clear();
             string readFood, readDate;
             for(int i=2; i<=10; i++) //"i" should check up to max number of boxes
             {
@@ -274,25 +276,6 @@ namespace smartFridge_v02
             excelApp.Quit();
         }
 
-        private void bShowCal_Click(object sender, EventArgs e)
-        {
-            Form calForm = new Form();
-            MonthCalendar mCal = new MonthCalendar();
-
-            calForm.Controls.Add(mCal);
-
-            // Panel panelCal = new Panel();
-
-            // panelCal.Controls.Add(mCal);
-            //mCal.Visible = true;
-            calForm.ShowDialog();
-            tbMessages.Clear();
-            tbMessages.AppendText(mCal.SelectionStart.ToString("yyyyMMdd"));    //Shows date in message box
-                                                                                //serialPort1.Write("Z");
-                                                                                // serialPort1.Write(mCal.SelectionStart.ToString("yyyyMMdd"));
-            calForm.Close();
-
-        }
 
         private string showCal()
         {

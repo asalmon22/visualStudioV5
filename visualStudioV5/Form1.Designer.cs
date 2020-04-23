@@ -39,7 +39,6 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.viewContents = new System.Windows.Forms.Button();
-            this.bShowCal = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -131,17 +130,6 @@
             this.viewContents.UseVisualStyleBackColor = true;
             this.viewContents.Click += new System.EventHandler(this.viewContents_Click);
             // 
-            // bShowCal
-            // 
-            this.bShowCal.Location = new System.Drawing.Point(1706, 683);
-            this.bShowCal.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.bShowCal.Name = "bShowCal";
-            this.bShowCal.Size = new System.Drawing.Size(275, 97);
-            this.bShowCal.TabIndex = 11;
-            this.bShowCal.Text = "Show the Calendar";
-            this.bShowCal.UseVisualStyleBackColor = true;
-            this.bShowCal.Click += new System.EventHandler(this.bShowCal_Click);
-            // 
             // continueButton
             // 
             this.continueButton.Location = new System.Drawing.Point(1221, 177);
@@ -157,9 +145,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1540, 829);
+            this.ClientSize = new System.Drawing.Size(1815, 829);
             this.Controls.Add(this.continueButton);
-            this.Controls.Add(this.bShowCal);
             this.Controls.Add(this.viewContents);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonPutIn);
@@ -189,7 +176,6 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button viewContents;
-        private System.Windows.Forms.Button bShowCal;
         private System.Windows.Forms.Button continueButton;
     }
 }
