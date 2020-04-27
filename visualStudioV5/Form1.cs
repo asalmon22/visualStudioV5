@@ -46,7 +46,7 @@ namespace smartFridge_v02
 
         private void displayText(object o, EventArgs e)
         {
-            tbMessages.Clear();
+            //tbMessages.Clear();
             tbMessages.AppendText(rxString);
         }
 
