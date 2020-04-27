@@ -198,6 +198,7 @@ namespace smartFridge_v02
                 {
                     foundFood = true;
                     excelSheet.Cells[pos, 1] = "0";
+                    excelSheet.Cells[pos, 2] = "e";
                     x = excelSheet.Cells[pos, 4].Value.ToString();
                     y = excelSheet.Cells[pos, 5].Value.ToString();
                     z = excelSheet.Cells[pos, 6].Value.ToString();
