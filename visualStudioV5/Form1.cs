@@ -15,16 +15,10 @@ namespace smartFridge_v02
 {
     public partial class Form1 : Form
     {
-
-        public static class Globals // do we need these?
-        {
-            public static int rowNumber = 8;
-            public static int columnNumber = 1;
-
-        }
         public Form1()
         {
             InitializeComponent();
+            //All this is optional text that can be displayed to troubleshoot serial connection
             //if (!serialPort1.IsOpen)
             //{
             //    tbMessages.Text = "nothing located in port";
@@ -38,30 +32,36 @@ namespace smartFridge_v02
         }
 
         private string rxString; 
+
+        //Writes to message box when anything is received via UART
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             rxString = serialPort1.ReadExisting();
             this.Invoke(new EventHandler(displayText));
         }
 
+        //Write to message textbox
         private void displayText(object o, EventArgs e)
         {
             //tbMessages.Clear();
             tbMessages.AppendText(rxString);
         }
 
+        //Write to message textbox (more generally)
         private void writeText(string str)
         {
             tbMessages.Clear();
             tbMessages.AppendText(str);
         }
 
+        //Referenced when user submits an item to receive from the fridge
         private void buttonAskForItem_Click(object sender, EventArgs e)
         { 
             GrabFood(tbAskForItem.Text);
             tbAskForItem.Clear();
         }
 
+        //Referenced when user submits an item to put into fridge
         private void buttonPutIn_Click(object sender, EventArgs e)
         {
             //Prompt the user to input an expiration date
@@ -142,6 +142,7 @@ namespace smartFridge_v02
             return foundFood;
         }
 
+        //Stores food in fridge database
         private void PlaceFood(string foodItem, string date)
         {
             //open excel sheet
@@ -176,6 +177,7 @@ namespace smartFridge_v02
             excelApp.Quit();
         }
 
+        //Removes food from fridge database, sends coordinates to microcontroller
         private void GrabFood(string foodItem)
         {
             //open excel sheet
@@ -246,6 +248,7 @@ namespace smartFridge_v02
             serialPort1.Close();
         }
 
+        //Prints contents of fridge to message textbox, when button pressed by user
         private void viewContents_Click(object sender, EventArgs e)
         {
             //Open excel workbook and sheets
@@ -277,7 +280,7 @@ namespace smartFridge_v02
             excelApp.Quit();
         }
 
-
+        //Shows pop-up calendar
         private string showCal()
         {
             //Open up a new form containing a calendar
@@ -340,6 +343,7 @@ namespace smartFridge_v02
             return readText;
         }
 
+        //Sends a predetermined character to the microcontroller, allowing for motor movement to continue
         private void continueButton_Click(object sender, EventArgs e)
         {
             tbMessages.Clear();
