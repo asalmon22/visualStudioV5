@@ -25,16 +25,16 @@ namespace smartFridge_v02
         public Form1()
         {
             InitializeComponent();
-            if (!serialPort1.IsOpen)
-            {
-                tbMessages.Text = "nothing located in port";
-                serialPort1.Open();
-                tbMessages.Text = "port opened";
-            }
-            else
-            {
-                tbMessages.Text = "port is busy rn";
-            }
+            //if (!serialPort1.IsOpen)
+            //{
+            //    tbMessages.Text = "nothing located in port";
+            //    serialPort1.Open();
+            //    tbMessages.Text = "port opened";
+            //}
+            //else
+            //{
+            //    tbMessages.Text = "port is busy rn";
+            //}
         }
 
         private string rxString; 
@@ -203,7 +203,7 @@ namespace smartFridge_v02
                     y = excelSheet.Cells[pos, 5].Value.ToString();
                     z = excelSheet.Cells[pos, 6].Value.ToString();
 
-                    serialPort1.Write("P"+x+y+z+"@");
+                  //  serialPort1.Write("P"+x+y+z+"@");
                 }
                 pos++;
             }
